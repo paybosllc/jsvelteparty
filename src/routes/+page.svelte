@@ -12,8 +12,8 @@
 	/**
 	 * @type {string | any[]}
 	 */
-	// let titles = []; // = ['Title 1', 'Title 2', 'Title 3', 'Title 4', 'Title 5', ]
-	let titles =  ['Title 1', 'Title 2', 'Title 3', 'Title 4', 'Title 5', ]
+	let titles = []; // = ['Title 1', 'Title 2', 'Title 3', 'Title 4', 'Title 5', ]
+	// let titles =  ['Title 1', 'Title 2', 'Title 3', 'Title 4', 'Title 5', ]
 	/**
 	 * @type {string}
 	 */
@@ -46,7 +46,7 @@
 
 	onMount(() => {
 		titles = categories.split(",");
-		if (titles.length == 0)
+		if (!titles)
 			titles = ['Title 1', 'Title 2', 'Title 3', 'Title 4', 'Title 5', ];
 		console.log(titles);
 		scoreTeamA.set(0);
