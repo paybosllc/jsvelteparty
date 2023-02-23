@@ -8,11 +8,6 @@
 	import ToggleCell from './ToggleCell.svelte';
 	import { scoreTeamA, scoreTeamB, gameCategories, numberOfQuestions } from './store';
 	
-	$scoreTeamA = 0
-	$scoreTeamB = 0
-	if (!$gameCategories) $gameCategories = "Title 1,Title 2,Title 3,Title 4, Title 5"
-	if (!$numberOfQuestions) $numberOfQuestions = 5
-
 	/**
 	 * @type {string | any[]}
 	 */
@@ -34,9 +29,6 @@
 	 */
 	let teamBValue;
 
-	categories = $gameCategories
-	questions = $numberOfQuestions
-
 	/**
 	 * @param {string | number} number
 	 */
@@ -46,8 +38,19 @@
 	};
 
 	onMount(() => {
-		titles = categories.split(",");
-		doColumnUpdate(titles.length);
+		console.log("onMount")
+		if (!$gameCategories) $gameCategories = "Title 1,Title 2,Title 3,Title 4, Title 5"
+		if (!$numberOfQuestions) $numberOfQuestions = 5
+
+		$scoreTeamA = 0
+		$scoreTeamB = 0
+		questions = $numberOfQuestions
+		categories = $gameCategories;
+		titles = categories.split(",")
+		doColumnUpdate(titles.length)
+
+		titles = titles;
+		console.log("End of onMount")
 	})
 
 </script>
