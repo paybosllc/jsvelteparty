@@ -31,8 +31,6 @@
 	let teamBValue;
 
 	gameCategories.subscribe((/** @type {any} */ value) => { categories = value})
-	console.log("gameCategories\n")
-	console.log(gameCategories)
 	numberOfQuestions.subscribe(value => { questions = value})
 	scoreTeamA.subscribe(value => { teamAValue = value})
 	scoreTeamB.subscribe(value => { teamBValue = value})
@@ -46,10 +44,10 @@
 	};
 
 	onMount(() => {
-		doColumnUpdate(titles.length);
+		titles = categories.split(",");
+		console.log(titles);
 		scoreTeamA.set(0);
 		scoreTeamB.set(0);
-		titles = categories.split(",");
 		doColumnUpdate(titles.length);
 	})
 
