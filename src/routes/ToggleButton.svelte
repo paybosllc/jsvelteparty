@@ -22,7 +22,6 @@
 	   function handleClick() {
 		selected = !selected
 		const scoreChange = selected ? score : -score;
-		console.log(scoreChange);
 	   	dispatch('scoreEvent', { text: title, value: scoreChange })
 	  }
 

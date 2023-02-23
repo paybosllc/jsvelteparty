@@ -3,6 +3,7 @@
 	import TCell from './TCell.svelte';
   import ToggleButton from './ToggleButton.svelte'
   import { scoreTeamA, scoreTeamB } from './store'
+
   let showToggle = false;
   let tbASelected = false;
   let tbBSelected = false;
@@ -17,13 +18,11 @@
   }
 
   function scoreEvent(e) {
-    console.log('score event')
-    console.log(e.detail);
     if (e.detail.text === 'A') {
-      scoreTeamA.update(n => n + e.detail.value)
+      $scoreTeamA += e.detail.value
     }
     else {
-      scoreTeamB.update(n => n + e.detail.value)
+      $scoreTeamB += e.detail.value
     }
   }
 

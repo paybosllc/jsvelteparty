@@ -1,19 +1,22 @@
 <svelte:head>
 	<title>J-Board</title>
 	<meta name="description" content="JBoard Page" />
-
 </svelte:head>
 
 <script>
 	import { onMount } from 'svelte';
 	import ToggleCell from './ToggleCell.svelte';
 	import { scoreTeamA, scoreTeamB, gameCategories, numberOfQuestions } from './store';
+	
+	$scoreTeamA = 0
+	$scoreTeamB = 0
+	if (!$gameCategories) $gameCategories = "Title 1,Title 2,Title 3,Title 4, Title 5"
+	if (!$numberOfQuestions) $numberOfQuestions = 5
 
 	/**
 	 * @type {string | any[]}
 	 */
-	let titles = []; // = ['Title 1', 'Title 2', 'Title 3', 'Title 4', 'Title 5', ]
-	// let titles =  ['Title 1', 'Title 2', 'Title 3', 'Title 4', 'Title 5', ]
+	let titles = []; 
 	/**
 	 * @type {string}
 	 */
@@ -21,7 +24,7 @@
 	/**
 	 * @type {number}
 	 */
-	let questions = 5;
+	let questions;
 	/**
 	 * @type {number}
 	 */
@@ -31,10 +34,8 @@
 	 */
 	let teamBValue;
 
-	gameCategories.subscribe((/** @type {any} */ value) => { categories = value})
-	numberOfQuestions.subscribe(value => { questions = value})
-	scoreTeamA.subscribe(value => { teamAValue = value})
-	scoreTeamB.subscribe(value => { teamBValue = value})
+	categories = $gameCategories
+	questions = $numberOfQuestions
 
 	/**
 	 * @param {string | number} number
@@ -46,11 +47,6 @@
 
 	onMount(() => {
 		titles = categories.split(",");
-		if (!titles)
-			titles = ['Title 1', 'Title 2', 'Title 3', 'Title 4', 'Title 5', ];
-		console.log(titles);
-		scoreTeamA.set(0);
-		scoreTeamB.set(0);
 		doColumnUpdate(titles.length);
 	})
 
@@ -72,8 +68,8 @@
 	</div>
 
 	<div class="scoregrid">
-		<h3 class="scorecard">Team A: {teamAValue}</h3>
-		<h3 class="scorecard">Team B: {teamBValue}</h3>
+		<h3 class="scorecard">Team A: {$scoreTeamA}</h3>
+		<h3 class="scorecard">Team B: {$scoreTeamB}</h3>
 	</div>
 </div>
 
