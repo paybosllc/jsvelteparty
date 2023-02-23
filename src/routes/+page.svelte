@@ -12,7 +12,8 @@
 	/**
 	 * @type {string | any[]}
 	 */
-	let titles = []; // = ['Title 1', 'Title 2', 'Title 3', 'Title 4', 'Title 5', ]
+	// let titles = []; // = ['Title 1', 'Title 2', 'Title 3', 'Title 4', 'Title 5', ]
+	let titles =  ['Title 1', 'Title 2', 'Title 3', 'Title 4', 'Title 5', ]
 	/**
 	 * @type {string}
 	 */
@@ -20,7 +21,7 @@
 	/**
 	 * @type {number}
 	 */
-	let questions;
+	let questions = 5;
 	/**
 	 * @type {number}
 	 */
