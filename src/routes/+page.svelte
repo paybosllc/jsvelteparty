@@ -7,28 +7,15 @@
 	import { onMount } from 'svelte';
 	import ToggleCell from './ToggleCell.svelte';
 	import { scoreTeamA, scoreTeamB, gameCategories, numberOfQuestions } from './store';
-	
+
 	/**
 	 * @type {string | any[]}
 	 */
-	let titles = []; 
-	/**
-	 * @type {string}
-	 */
-	let categories;
+	$: titles = $gameCategories.split(",") || [] 
 	/**
 	 * @type {number}
 	 */
-	let questions;
-	/**
-	 * @type {number}
-	 */
-	let teamAValue;
-	/**
-	 * @type {number}
-	 */
-	let teamBValue;
-
+	$: questions = $numberOfQuestions || 5
 	/**
 	 * @param {string | number} number
 	 */
@@ -44,18 +31,20 @@
 
 		$scoreTeamA = 0
 		$scoreTeamB = 0
-		questions = $numberOfQuestions
-		categories = $gameCategories;
-		titles = categories.split(",")
-		doColumnUpdate(titles.length)
 
-		titles = titles;
+		// categories = $gameCategories;
+		titles = $gameCategories.split(",")
+		questions = $numberOfQuestions
+
+		doColumnUpdate(titles.length)
 		console.log("End of onMount")
 	})
 
 </script>
 
 <div>
+	<p>junk</p>
+	{#if titles}
 	<div class="mygrid" id="myGridId">
 		<!-- place the categorie titles -->
 		{#each titles as title}
@@ -63,7 +52,7 @@
 		{/each}
 
 		<!-- create the game board -->
-		{#each Array(questions) as _, row(row)}
+		{#each Array($numberOfQuestions) as _, row(row)}
 			{#each Array(titles.length) as _, col (col)}
 				<ToggleCell scoreValue={(row + 1) * 200}/>
 			{/each}
@@ -74,6 +63,8 @@
 		<h3 class="scorecard">Team A: {$scoreTeamA}</h3>
 		<h3 class="scorecard">Team B: {$scoreTeamB}</h3>
 	</div>
+	{/if}
+	<p>more junk</p>
 </div>
 
 <style>
