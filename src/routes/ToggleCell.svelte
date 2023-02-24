@@ -14,8 +14,7 @@
    export let scoreValue;
 
   function doToggle() {
-    scoreValue += 10
-    // showToggle = !showToggle
+    showToggle = !showToggle
   }
 
   function scoreEvent(e) {
@@ -30,23 +29,21 @@
 </script>
 
 <div class="container" id="gridId">
+{#if !showToggle}
 <div>
-  <button class:hide={showToggle} class="no-border" on:click={doToggle}>{scoreValue}</button>
+  <button class="no-border" on:click|preventDefault={doToggle}>{scoreValue}</button>
 </div>
-
-<div class:hide={!showToggle}>
+{:else}
+<div>
   <TCell>
     <ToggleButton title='A' score={scoreValue} disabled={tbBSelected} bind:selected = {tbASelected} on:scoreEvent={scoreEvent} />
     <ToggleButton title='B' score={scoreValue} disabled={tbASelected} bind:selected = {tbBSelected} on:scoreEvent={scoreEvent} />
   </TCell>
 </div>
+{/if}
 </div>
 
 <style>
-
-.hide {
-  display: none;
-}
 
 .no-border {
   background: #4040FF;
