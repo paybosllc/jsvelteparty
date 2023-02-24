@@ -7,27 +7,17 @@
 	import { gameCategories, numberOfQuestions } from '../store';
 
 	/**
-	 * @type {string}
-	 */
-	let categories;
-	/**
 	 * @type {number}
 	 */
-	let questions;
+	$: questions = $numberOfQuestions;
 
-	categories = "";
-	questions = 5;
-
-	gameCategories.subscribe((/** @type {any} */ value) => { categories = value})
-	numberOfQuestions.subscribe(value => { questions = value})
-
-	let textBoxEntries = categories.split(",");
+	let textBoxEntries = $gameCategories.split(",");
 	const numbers = [4, 5, 6];
 
 	function saveSettings() {
-		const csvString = textBoxEntries.join(',');
-		gameCategories.set(csvString);
-		numberOfQuestions.set(questions)
+		const csvString = textBoxEntries.join(',')
+		$gameCategories = csvString
+		$numberOfQuestions = questions
 	}
 
 </script>
@@ -50,11 +40,6 @@
 	  <div class="container">
 		  <button class="but" on:click={saveSettings}>Save Settings</button>
 	  </div>
-<!--
-	  <p>
-		This is a long string to help with padding, why do I need this silly thing...
-	  </p>
- -->
 	</div>
 
 <style>
