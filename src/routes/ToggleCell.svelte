@@ -5,9 +5,9 @@
   import { scoreTeamA, scoreTeamB } from './store'
   import { writable } from 'svelte/store'
 
-  $: showToggle = false
-  $: tbASelected = false
-  $: tbBSelected = false
+  let showValue = true
+  let tbASelected = false
+  let tbBSelected = false
 
   /**
 	 * @type {number}
@@ -26,17 +26,13 @@
 </script>
 
 <div class="container" id="gridId">
-{#if !showToggle}
-<div>
-  <button class="no-border" on:click|preventDefault={() => showToggle = !showToggle}>{scoreValue}</button>
-</div>
+{#if showValue}
+  <button class="no-border" on:click|preventDefault={() => showValue = !showValue}>{scoreValue}</button>
 {:else}
-<div>
   <TCell>
     <ToggleButton title='A' score={scoreValue} disabled={tbBSelected} bind:selected={tbASelected} on:scoreEvent={scoreEvent} />
     <ToggleButton title='B' score={scoreValue} disabled={tbASelected} bind:selected={tbBSelected} on:scoreEvent={scoreEvent} />
   </TCell>
-</div>
 {/if}
 </div>
 
