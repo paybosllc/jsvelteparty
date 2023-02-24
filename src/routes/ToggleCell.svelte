@@ -14,7 +14,8 @@
    export let scoreValue;
 
   function doToggle() {
-    showToggle = !showToggle
+    scoreValue += 10
+    // showToggle = !showToggle
   }
 
   function scoreEvent(e) {
