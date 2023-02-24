@@ -11,7 +11,7 @@
 	 */
 	$: questions = $numberOfQuestions;
 
-	let textBoxEntries = $gameCategories.split(",");
+	$: textBoxEntries = $gameCategories.split(",");
 	const numbers = [4, 5, 6];
 
 	function saveSettings() {
@@ -31,14 +31,14 @@
 	  {/each}
 
 	  <h3>Number of Questions</h3>
-	  <select class="opt" bind:value={questions}>
+	  <select class="opt" bind:value={$numberOfQuestions}>
 		{#each numbers as number}
 			<option class="opt" value={number}>{number}</option>
 		{/each}
 	  </select>
 
 	  <div class="container">
-		  <button class="but" on:click={saveSettings}>Save Settings</button>
+		  <button class="but" on:click="{saveSettings}">Save Settings</button>
 	  </div>
 	</div>
 
