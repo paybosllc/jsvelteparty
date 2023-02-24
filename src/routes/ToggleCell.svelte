@@ -30,7 +30,7 @@
 
 <div class="container" id="gridId">
 <div>
-  <button class:hide={showToggle} class="no-border" on:click={doToggle}>{scoreValue}</button>
+  <button class:hide={showToggle} class="no-border" on:click="{doToggle}">{scoreValue}</button>
 </div>
 
 <div class:hide={!showToggle}>
