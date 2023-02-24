@@ -19,6 +19,7 @@
 	/**
 	 * @param {string | number} number
 	 */
+
 	function doColumnUpdate(number) {
 		const gridDiv = document.getElementById("myGridId");
 		gridDiv?.style.setProperty('grid-template-columns', 'repeat(' + number + ', 1fr)')
@@ -26,25 +27,14 @@
 
 	onMount(() => {
 		console.log("onMount")
-		if (!$gameCategories) $gameCategories = "Title 1,Title 2,Title 3,Title 4, Title 5"
-		if (!$numberOfQuestions) $numberOfQuestions = 5
 
-		$scoreTeamA = 0
-		$scoreTeamB = 0
-
-		// categories = $gameCategories;
-		titles = $gameCategories.split(",")
-		questions = $numberOfQuestions
-
-		doColumnUpdate(titles.length)
+		doColumnUpdate(titles.length || 5)
 		console.log("End of onMount")
 	})
 
 </script>
 
 <div>
-	<p>junk</p>
-	{#if titles}
 	<div class="mygrid" id="myGridId">
 		<!-- place the categorie titles -->
 		{#each titles as title}
@@ -53,7 +43,7 @@
 
 		<!-- create the game board -->
 		{#each Array($numberOfQuestions) as _, row(row)}
-			{#each Array(titles.length) as _, col (col)}
+			{#each Array(titles.length) as _, col(col)}
 				<ToggleCell scoreValue={(row + 1) * 200}/>
 			{/each}
 		{/each}
@@ -63,24 +53,21 @@
 		<h3 class="scorecard">Team A: {$scoreTeamA}</h3>
 		<h3 class="scorecard">Team B: {$scoreTeamB}</h3>
 	</div>
-	{/if}
-	<p>more junk</p>
 </div>
 
 <style>
 
 .mygrid {
-	--columns: ;
-	--rows: ;
+	--columns: 5;
+	--rows: 0;
 	display: grid;
 	grid-template-columns: repeat(var(--columns), 1fr);
 	grid-template-rows: repeat(var(--rows), 1fr);
-	grid-column-gap: 40px;
-	grid-row-gap: 40px;
+	grid-column-gap: 28px;
+	grid-row-gap: 28px;
 	margin: auto;
 	justify-content: center;
 	align-content: center;
-	/* align-items: center; */
 	text-align: center;
 }
 
