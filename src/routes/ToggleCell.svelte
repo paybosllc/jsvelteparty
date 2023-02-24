@@ -13,10 +13,6 @@
 	 */
    export let scoreValue;
 
-  function doToggle() {
-    showToggle = !showToggle
-  }
-
   function scoreEvent(e) {
     if (e.detail.text === 'A') {
       $scoreTeamA += e.detail.value
@@ -29,9 +25,9 @@
 </script>
 
 <div class="container" id="gridId">
-{#if !showToggle}
+{#if showToggle}
 <div>
-  <button class="no-border" on:click|preventDefault={doToggle}>{scoreValue}</button>
+  <button class="no-border" on:click|preventDefault={() => showToggle = !showToggle}>{scoreValue}</button>
 </div>
 {:else}
 <div>
