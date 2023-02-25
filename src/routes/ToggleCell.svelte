@@ -27,7 +27,7 @@
 
 <div class="container" id="gridId">
 {#if showValue}
-  <button class="no-border" on:click|preventDefault={() => showValue = !showValue}>{scoreValue}</button>
+  <button class="no-border" on:click={() => showValue = !showValue}>{scoreValue}</button>
 {:else}
   <TCell>
     <ToggleButton title='A' score={scoreValue} disabled={tbBSelected} bind:selected={tbASelected} on:scoreEvent={scoreEvent} />
